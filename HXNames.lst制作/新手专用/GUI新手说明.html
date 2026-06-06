@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HXv4 HxNames GUI 新手说明</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --text: #20242a;
+      --muted: #5f6875;
+      --line: #d8dde5;
+      --accent: #1769aa;
+      --accent-soft: #e9f3fb;
+      --warn: #9a5b00;
+      --warn-soft: #fff4dc;
+      --code: #f0f2f5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      width: min(980px, calc(100% - 32px));
+      margin: 32px auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(18, 30, 45, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+
+    h2 {
+      margin: 28px 0 10px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      font-size: 20px;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    ol,
+    ul {
+      margin: 8px 0 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    code {
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--code);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.95em;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .tip {
+      margin: 14px 0;
+      padding: 12px 14px;
+      border: 1px solid #c7def0;
+      border-radius: 6px;
+      background: var(--accent-soft);
+    }
+
+    .warning {
+      margin: 14px 0;
+      padding: 12px 14px;
+      border: 1px solid #ead29c;
+      border-radius: 6px;
+      background: var(--warn-soft);
+      color: var(--warn);
+    }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .quick div {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px;
+      background: #fbfcfd;
+    }
+
+    .quick strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+    }
+
+    @media (max-width: 760px) {
+      main {
+        width: calc(100% - 18px);
+        margin: 9px auto;
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+      .quick {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>HXv4 HxNames GUI 新手说明</h1>
+    <p class="lead">这个 GUI 用来生成 <code>HxNames.lst</code>，并把 HXv4 hash 文件名和目录名尽量还原成可读名称。</p>
+
+    <div class="quick">
+      <div>
+        <strong>第一步</strong>
+        解包游戏 xp3。
+      </div>
+      <div>
+        <strong>第二步</strong>
+        双击 <code>启动GUI.bat</code>。
+      </div>
+      <div>
+        <strong>第三步</strong>
+        选择目录、勾选来源、开始生成。
+      </div>
+    </div>
+
+    <h2>推荐流程</h2>
+    <ol>
+      <li>先用 KrkrExtractForCxdecV2 或 GARBro2 把游戏的 xp3 解包到一个目录。</li>
+      <li>双击项目目录里的 <code>启动GUI.bat</code>。</li>
+      <li>在“待处理/重命名目录”选择刚才解包出来的总目录。</li>
+      <li><code>HxNames.lst</code> 默认会生成在项目目录，也可以自己选择保存位置。</li>
+      <li>在“明文字典来源”里按你已有的文件勾选来源。</li>
+      <li>保持“生成后自动按 HxNames 重命名目录和文件”勾选。</li>
+      <li>点击“生成 HxNames 并重命名”，然后看底部运行日志。</li>
+    </ol>
+
+    <h2>来源怎么选</h2>
+    <ul>
+      <li>有 <code>scn</code> 剧本目录：优先勾选“扫描 scn/PSB 剧本目录”。</li>
+      <li>有同游戏体验版、旧版、未加密版：勾选“从明文目录收集文件名”。</li>
+      <li>有 <code>base.stage</code>、<code>cglist.csv</code>、<code>soundlist.csv</code>、<code>charvoice.csv</code> 等文件：分别勾选对应项。</li>
+      <li>不确定时，先只选“扫描 scn/PSB 剧本目录”和“从明文目录收集文件名”。</li>
+    </ul>
+
+    <div class="tip">
+      勾选了某个来源后，一定要在右边选择对应文件或目录。否则 GUI 会在日志里提示跳过。
+    </div>
+
+    <h2>其他按钮</h2>
+    <ul>
+      <li><strong>恢复目录结构：</strong>GARBro 把目录 hash 和文件 hash 拼在一个文件名里时使用，例如 <code>目录hash_文件hash.ext</code>。</li>
+      <li><strong>生成干净 HxNames：</strong>发布给别人用之前，从已经反混淆过的目录里筛出实际命中的条目，减少冗余。</li>
+    </ul>
+
+    <h2>常见问题</h2>
+    <ul>
+      <li>第一次运行会安装 <code>json5</code>，需要能访问 pip。</li>
+      <li><code>PsbDecompile.exe</code>、<code>pbd2json.exe</code>、<code>KrkrHxv4Hash.dll</code> 必须保留在项目自带的 <code>binaries</code> 目录里。</li>
+      <li>如果日志里提示路径不存在，检查是否勾选了来源但没有选择文件/目录。</li>
+      <li>如果还原率低，通常需要更多明文来源，比如旧版/体验版解包目录、CSV 列表、KrkrDump 日志。</li>
+    </ul>
+
+    <div class="warning">
+      建议先备份解包目录再执行自动重命名。GUI 会尽量避免覆盖同名文件，但备份能避免误选目录带来的麻烦。
+    </div>
+  </main>
+</body>
+</html>
